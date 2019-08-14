@@ -47,6 +47,7 @@ body, canvas, div {
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
+  user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -81,12 +82,16 @@ body {
 
   display: flex;
   flex-direction: column;
+  
+  /* fix bug: https://github.com/cocos-creator/2d-tasks/issues/791 */
+  /* overflow cannot be applied in Cocos2dGameContainer, 
+  otherwise child elements will be hidden when Cocos2dGameContainer rotated 90 deg */
+  overflow: hidden;
 }
 
 #Cocos2dGameContainer {
   position: absolute;
   margin: 0;
-  overflow: hidden;
   left: 0px;
   top: 0px;
 
@@ -160,7 +165,6 @@ p.footer {
 @keyframes animate-stripes {
     0% {background-position: 0 0;} 100% {background-position: 60px 0;}
 }
-
   </style>
 
 </head>
